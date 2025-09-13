@@ -53,6 +53,45 @@
         .modal-backdrop {
             background-color: rgba(0,0,0,0.75);
         }
+        
+        /* Flashcard Styles */
+        .flashcard-scene {
+            perspective: 1000px;
+        }
+        .flashcard {
+            width: 100%;
+            height: 300px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.7s;
+            cursor: pointer;
+        }
+        .flashcard.is-flipped {
+            transform: rotateY(180deg);
+        }
+        .flashcard-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .flashcard-front {
+            background: white;
+            color: #1e3a8a; /* blue-900 */
+        }
+        .flashcard-back {
+            background: #dbeafe; /* blue-100 */
+            color: #1e40af; /* blue-800 */
+            transform: rotateY(180deg);
+        }
     </style>
 </head>
 <body class="text-slate-800">
@@ -64,7 +103,10 @@
             <div class="animate-on-scroll">
                 <h1 class="text-4xl md:text-6xl font-bold mb-4">Welcome, Young Scientists!</h1>
                 <p class="text-lg md:text-2xl mb-6 max-w-3xl mx-auto">Let's go on a fun journey to train for the Vigyan Mancha Exam!</p>
-                <a href="#quiz-section" class="bg-yellow-400 text-slate-900 font-bold py-3 px-8 rounded-full text-xl hover:bg-yellow-300 transition-transform transform hover:scale-105 inline-block">Start the Quiz!</a>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="#flashcard-section" class="bg-white text-blue-600 font-bold py-3 px-8 rounded-full text-xl hover:bg-blue-100 transition-transform transform hover:scale-105 inline-block">Learn with Flashcards</a>
+                    <a href="#quiz-section" class="bg-yellow-400 text-slate-900 font-bold py-3 px-8 rounded-full text-xl hover:bg-yellow-300 transition-transform transform hover:scale-105 inline-block">Start the Quiz!</a>
+                </div>
             </div>
         </div>
         <!-- Fun animated shapes -->
@@ -120,7 +162,7 @@
         </section>
 
         <!-- Section 3: Why is it important? -->
-        <section class="flex flex-col md:flex-row-reverse items-center gap-12 mb-20 animate-on-scroll">
+        <section class="flex flex-col md:flex-row-reverse items-center gap-12 animate-on-scroll">
             <div class="w-full md:w-1/2">
                 <h2 class="text-3xl md:text-4xl font-bold text-blue-600 mb-4">Why is it Important?</h2>
                 <p class="text-lg leading-relaxed mb-4">The Vigyan Mancha helps us see that science isn't just about books and exams. It's about being curious, asking questions, and discovering how the world works.</p>
@@ -135,6 +177,37 @@
             </div>
         </section>
     </main>
+
+    <!-- Flashcard Section -->
+    <section id="flashcard-section" class="py-20 px-6 bg-slate-100">
+        <div class="container mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-blue-600 mb-4">Revise with Flashcards!</h2>
+            <p class="text-xl mb-10 max-w-2xl mx-auto text-slate-600">Click the card to flip it. Use the arrows to review key facts.</p>
+            
+            <div class="max-w-xl mx-auto">
+                <div class="flashcard-scene">
+                    <div id="flashcard" class="flashcard">
+                        <div class="flashcard-face flashcard-front">
+                            <p id="flashcard-front-text" class="text-3xl"></p>
+                        </div>
+                        <div class="flashcard-face flashcard-back">
+                            <p id="flashcard-back-text" class="text-xl"></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-between items-center mt-8">
+                    <button id="prev-flashcard-btn" class="bg-white p-4 rounded-full shadow-md hover:bg-slate-200 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+                    </button>
+                    <div id="flashcard-counter" class="text-lg font-semibold text-slate-700">1 / 20</div>
+                    <button id="next-flashcard-btn" class="bg-white p-4 rounded-full shadow-md hover:bg-slate-200 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Quiz Section -->
     <section id="quiz-section" class="quiz-container py-20 px-6">
@@ -227,8 +300,8 @@
         });
         scrollElements.forEach(el => observer.observe(el));
         
-        // --- QUIZ LOGIC ---
-        
+        // --- DOM ELEMENT SELECTION ---
+        // Quiz Elements
         const quizModal = document.getElementById('quiz-modal');
         const resultsModal = document.getElementById('results-modal');
         const quizBox = document.getElementById('quiz-box');
@@ -240,15 +313,38 @@
         const progressText = document.getElementById('progress');
         const timerText = document.getElementById('timer');
 
-        let allQuestions = [];
-        let currentQuestions = [];
-        let currentQuestionIndex = 0;
-        let score = 0;
-        let wrongAnswers = [];
-        let timerInterval;
-        let selectedLevel = 'easy';
+        // Flashcard Elements
+        const flashcard = document.getElementById('flashcard');
+        const flashcardFrontText = document.getElementById('flashcard-front-text');
+        const flashcardBackText = document.getElementById('flashcard-back-text');
+        const prevFlashcardBtn = document.getElementById('prev-flashcard-btn');
+        const nextFlashcardBtn = document.getElementById('next-flashcard-btn');
+        const flashcardCounter = document.getElementById('flashcard-counter');
 
-        // --- MASTER QUESTION BANK ---
+        // --- DATA ---
+        const flashcardsData = [
+             { q: "What is a harmful insect?", a: "A mosquito, because it can spread diseases like dengue and malaria." },
+             { q: "Which animal gives birth to live babies instead of laying eggs?", a: "A bat, because it is a mammal." },
+             { q: "What part of the plant is a potato?", a: "It's an underground stem called a tuber." },
+             { q: "What process do plants use to make food?", a: "Photosynthesis, using sunlight, water, and air." },
+             { q: "What force makes a rolling ball stop?", a: "Friction, the force that opposes motion between surfaces." },
+             { q: "What is the solid form of water?", a: "Ice. Water turns to ice at 0° Celsius." },
+             { q: "Who proved that plants have life?", a: "Jagadish Chandra Bose, a famous Indian scientist." },
+             { q: "Why is the sky blue?", a: "The Earth's atmosphere scatters blue light from the sun more than other colors." },
+             { q: "What is the main difference between weight and mass?", a: "Weight depends on gravity, but mass is the same everywhere." },
+             { q: "Why do astronauts float in space?", a: "They are in a state of 'freefall', constantly falling towards Earth but moving fast enough to miss it." },
+             { q: "What is a non-flowering plant?", a: "A plant like moss or fern that reproduces with spores, not seeds." },
+             { q: "What is the Moon?", a: "It's Earth's natural satellite. It shines by reflecting sunlight." },
+             { q: "When are day and night equal?", a: "On an equinox, around March 21st and September 23rd." },
+             { q: "What is metamorphosis?", a: "The process of transformation, like a caterpillar turning into a butterfly." },
+             { q: "Why is plastic used to cover electric wires?", a: "Because plastic is an insulator and does not conduct electricity, keeping us safe." },
+             { q: "What gas do we breathe out?", a: "Carbon Dioxide. Our body uses Oxygen and creates Carbon Dioxide." },
+             { q: "What is the smallest composite number?", a: "4. A composite number has more than two factors (1, 2, and 4)." },
+             { q: "Why does a pressure cooker cook food faster?", a: "The high pressure inside increases the boiling point of water, making it hotter." },
+             { q: "What is dry ice?", a: "It is the solid form of carbon dioxide." },
+             { q: "What is the largest organ in the human body?", a: "The skin, which covers and protects our entire body." }
+        ];
+
         const questionBank = {
             easy: [
                 { q: "Which of these is a harmful insect?", a: "Mosquito", o: ["Butterfly", "Bee", "Silkworm"], e: "Mosquitoes can spread diseases like dengue and malaria, making them harmful to us." },
@@ -372,8 +468,47 @@
             ]
         };
         
-        allQuestions = questionBank;
+        // --- FLASHCARD LOGIC ---
+        let currentFlashcardIndex = 0;
 
+        function showFlashcard(index) {
+            if (flashcard.classList.contains('is-flipped')) {
+                flashcard.classList.remove('is-flipped');
+            }
+            // A short delay to allow the card to flip back before changing content
+            setTimeout(() => {
+                flashcardFrontText.textContent = flashcardsData[index].q;
+                flashcardBackText.textContent = flashcardsData[index].a;
+                flashcardCounter.textContent = `${index + 1} / ${flashcardsData.length}`;
+            }, 250);
+        }
+
+        flashcard.addEventListener('click', () => {
+            flashcard.classList.toggle('is-flipped');
+        });
+
+        prevFlashcardBtn.addEventListener('click', () => {
+            currentFlashcardIndex = (currentFlashcardIndex - 1 + flashcardsData.length) % flashcardsData.length;
+            showFlashcard(currentFlashcardIndex);
+        });
+
+        nextFlashcardBtn.addEventListener('click', () => {
+            currentFlashcardIndex = (currentFlashcardIndex + 1) % flashcardsData.length;
+            showFlashcard(currentFlashcardIndex);
+        });
+        
+        // Initial load for flashcards
+        showFlashcard(currentFlashcardIndex);
+
+
+        // --- QUIZ LOGIC ---
+        let allQuestions = questionBank;
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let wrongAnswers = [];
+        let timerInterval;
+        let selectedLevel = 'easy';
 
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
