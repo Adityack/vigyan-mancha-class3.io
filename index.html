@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Paschim Banga Vigyan Mancha | Interactive Learning for Kids</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f9ff; /* Light Sky Blue */
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, .quiz-question-text {
+            font-family: 'Fredoka One', cursive;
+        }
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .interactive-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .interactive-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        .quiz-option.selected {
+            background-color: #facc15; /* yellow-400 */
+            color: #1e293b; /* slate-800 */
+            transform: scale(1.05);
+        }
+        .quiz-option.correct {
+            background-color: #4ade80 !important; /* green-400 */
+            color: #1e293b !important;
+        }
+        .quiz-option.incorrect {
+            background-color: #f87171 !important; /* red-400 */
+            color: #1e293b !important;
+        }
+        .quiz-container {
+            background: linear-gradient(135deg, #60a5fa, #3b82f6);
+        }
+        /* Custom modal backdrop */
+        .modal-backdrop {
+            background-color: rgba(0,0,0,0.75);
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Hero Section -->
+    <header class="relative overflow-hidden bg-blue-500 text-white p-8 md:p-12 text-center">
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-500 to-indigo-600 opacity-80"></div>
+        <div class="relative z-10">
+            <div class="animate-on-scroll">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">Welcome, Young Scientists!</h1>
+                <p class="text-lg md:text-2xl mb-6 max-w-3xl mx-auto">Let's go on a fun journey to learn about Paschim Banga Vigyan Mancha!</p>
+                <a href="#learn" class="bg-yellow-400 text-slate-900 font-bold py-3 px-8 rounded-full text-xl hover:bg-yellow-300 transition-transform transform hover:scale-105 inline-block">Start Exploring!</a>
+            </div>
+        </div>
+        <!-- Fun animated shapes -->
+        <div class="absolute -bottom-4 -left-4 w-20 h-20 bg-yellow-300 rounded-full opacity-50 animate-pulse"></div>
+        <div class="absolute -top-4 -right-4 w-24 h-24 bg-rose-400 rounded-full opacity-50 animate-pulse delay-500"></div>
+        <div class="absolute bottom-10 right-10 w-12 h-12 bg-green-300 rounded-lg opacity-50 animate-bounce"></div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="learn" class="container mx-auto px-6 py-16">
+
+        <!-- Section 1: What is it? -->
+        <section class="flex flex-col md:flex-row items-center gap-12 mb-20 animate-on-scroll">
+            <div class="w-full md:w-1/2">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-600 mb-4">What is the Vigyan Mancha?</h2>
+                <p class="text-lg leading-relaxed mb-4">Imagine a giant, super fun science club for everyone in West Bengal! That's the <strong>Paschim Banga Vigyan Mancha</strong>. It's not a school, but a place where people who love science come together to learn, experiment, and share amazing ideas.</p>
+                <p class="text-lg leading-relaxed">Their main goal is to make science simple and exciting for everyone, especially students like you!</p>
+            </div>
+            <div class="w-full md:w-1/2 flex justify-center">
+                <img src="https://placehold.co/500x400/3b82f6/ffffff?text=Science+Club!" alt="Illustration of a friendly science club" class="rounded-2xl shadow-2xl" onerror="this.onerror=null;this.src='https://placehold.co/500x400/3b82f6/ffffff?text=Fun+Science+Club';">
+            </div>
+        </section>
+
+        <!-- Section 2: What do they do? -->
+        <section class="text-center mb-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-blue-600 mb-12 animate-on-scroll">Awesome Activities they Do!</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg interactive-card animate-on-scroll" style="transition-delay: 100ms;">
+                    <div class="text-5xl mb-4 text-green-500">🔬</div>
+                    <h3 class="text-2xl font-bold mb-2">Science Fairs</h3>
+                    <p>They organize amazing fairs where students show off their cool science projects and inventions!</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg interactive-card animate-on-scroll" style="transition-delay: 200ms;">
+                    <div class="text-5xl mb-4 text-yellow-500">🔭</div>
+                    <h3 class="text-2xl font-bold mb-2">Sky Watching</h3>
+                    <p>Using big telescopes, they help people watch stars, planets, and even faraway galaxies at night.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg interactive-card animate-on-scroll" style="transition-delay: 300ms;">
+                    <div class="text-5xl mb-4 text-purple-500">🧑‍🏫</div>
+                    <h3 class="text-2xl font-bold mb-2">Workshops</h3>
+                    <p>They hold fun workshops to teach new things, like how to build a robot or understand weather.</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="bg-white p-6 rounded-2xl shadow-lg interactive-card animate-on-scroll" style="transition-delay: 400ms;">
+                    <div class="text-5xl mb-4 text-red-500">📚</div>
+                    <h3 class="text-2xl font-bold mb-2">Science Books</h3>
+                    <p>They publish magazines and books in simple language to make learning science super easy and fun.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Why is it important? -->
+        <section class="flex flex-col md:flex-row-reverse items-center gap-12 mb-20 animate-on-scroll">
+            <div class="w-full md:w-1/2">
+                <h2 class="text-3xl md:text-4xl font-bold text-blue-600 mb-4">Why is it Important?</h2>
+                <p class="text-lg leading-relaxed mb-4">The Vigyan Mancha helps us see that science isn't just about books and exams. It's about being curious, asking questions, and discovering how the world works.</p>
+                <ul class="list-disc list-inside text-lg space-y-2">
+                    <li>It helps remove silly superstitions.</li>
+                    <li>It encourages us to think logically.</li>
+                    <li>It makes learning a playful adventure!</li>
+                </ul>
+            </div>
+            <div class="w-full md:w-1/2 flex justify-center">
+                 <img src="https://placehold.co/500x400/10b981/ffffff?text=Curiosity!" alt="Illustration of a child looking at a plant with a magnifying glass" class="rounded-2xl shadow-2xl" onerror="this.onerror=null;this.src='https://placehold.co/500x400/10b981/ffffff?text=Ask+Questions!';">
+            </div>
+        </section>
+    </main>
+
+    <!-- Quiz Section -->
+    <section id="quiz-section" class="quiz-container py-20 px-6">
+        <div class="container mx-auto text-center text-white">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">Ready for a Challenge?</h2>
+            <p class="text-xl mb-10 max-w-2xl mx-auto">Test your knowledge with our fun quiz! Choose your level and let the fun begin.</p>
+            
+            <div id="level-selection" class="flex flex-col sm:flex-row justify-center items-center gap-6">
+                <button onclick="startQuiz('easy')" class="w-full sm:w-auto bg-green-500 hover:bg-green-400 text-white font-bold py-4 px-10 rounded-xl text-2xl transition-transform transform hover:scale-105 shadow-lg">
+                    Level 1: Sprout 🌱
+                </button>
+                <button onclick="startQuiz('medium')" class="w-full sm:w-auto bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-4 px-10 rounded-xl text-2xl transition-transform transform hover:scale-105 shadow-lg">
+                    Level 2: Sapling 🌳
+                </button>
+                <button onclick="startQuiz('hard')" class="w-full sm:w-auto bg-red-500 hover:bg-red-400 text-white font-bold py-4 px-10 rounded-xl text-2xl transition-transform transform hover:scale-105 shadow-lg">
+                    Level 3: Scientist 👩‍🔬
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Modal -->
+    <div id="quiz-modal" class="fixed inset-0 w-full h-full modal-backdrop flex items-center justify-center p-4 z-50 hidden">
+        <div id="quiz-box" class="bg-slate-100 rounded-2xl shadow-2xl w-full max-w-2xl text-slate-800 p-8 transform scale-95 transition-transform">
+            <!-- Timer and Progress -->
+            <div class="flex justify-between items-center mb-6">
+                <div id="timer" class="text-2xl font-bold bg-white px-4 py-2 rounded-lg shadow">Time: 15:00</div>
+                <div id="progress" class="text-lg font-semibold">Question 1/25</div>
+            </div>
+
+            <!-- Question -->
+            <div id="question-container" class="mb-6">
+                <p class="text-2xl md:text-3xl font-bold text-center quiz-question-text">What is the capital of France?</p>
+            </div>
+            
+            <!-- Options -->
+            <div id="options-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Options will be injected here by JS -->
+            </div>
+            
+            <!-- Explanation -->
+            <div id="explanation-box" class="mt-6 p-4 bg-blue-100 border-l-4 border-blue-500 rounded-r-lg hidden">
+                <h4 class="font-bold text-blue-800">Explanation:</h4>
+                <p id="explanation-text" class="text-blue-700"></p>
+            </div>
+
+            <!-- Next Button -->
+            <div class="mt-8 text-center">
+                <button id="next-btn" class="bg-blue-600 text-white font-bold py-3 px-12 rounded-lg text-lg hover:bg-blue-500 transition-transform transform hover:scale-105 disabled:bg-slate-400 disabled:cursor-not-allowed disabled:scale-100" disabled>Next</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Results Modal -->
+    <div id="results-modal" class="fixed inset-0 w-full h-full modal-backdrop flex items-center justify-center p-4 z-50 hidden">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-3xl text-slate-800 p-8 transform scale-95 transition-transform text-center">
+            <h2 class="text-4xl font-bold text-blue-600 mb-2">Quiz Complete!</h2>
+            <p id="score-text" class="text-2xl font-semibold mb-6">You scored 20 out of 25!</p>
+            
+            <div id="wrong-answers-container" class="text-left max-h-80 overflow-y-auto bg-slate-50 p-4 rounded-lg border">
+                <h3 class="text-xl font-bold mb-4 text-red-600">Here's what you can review:</h3>
+                <!-- Wrong answers will be injected here -->
+            </div>
+
+            <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+                <button onclick="restartQuiz()" class="bg-blue-600 text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-blue-500 transition-transform transform hover:scale-105">Play Again</button>
+                <button onclick="closeResults()" class="bg-slate-500 text-white font-bold py-3 px-8 rounded-lg text-lg hover:bg-slate-400 transition-transform transform hover:scale-105">Close</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // Animate on scroll
+        const scrollElements = document.querySelectorAll('.animate-on-scroll');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        scrollElements.forEach(el => observer.observe(el));
+        
+        // --- QUIZ LOGIC ---
+        
+        const quizModal = document.getElementById('quiz-modal');
+        const resultsModal = document.getElementById('results-modal');
+        const quizBox = document.getElementById('quiz-box');
+        const questionText = document.querySelector('.quiz-question-text');
+        const optionsContainer = document.getElementById('options-container');
+        const explanationBox = document.getElementById('explanation-box');
+        const explanationText = document.getElementById('explanation-text');
+        const nextBtn = document.getElementById('next-btn');
+        const progressText = document.getElementById('progress');
+        const timerText = document.getElementById('timer');
+
+        let allQuestions = [];
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let wrongAnswers = [];
+        let timerInterval;
+        let selectedLevel = 'easy';
+
+        // --- MASTER QUESTION BANK ---
+        const questionBank = {
+            easy: [
+                { q: "Which of these is a harmful insect?", a: "Mosquito", o: ["Butterfly", "Bee", "Silkworm"], e: "Mosquitoes can spread diseases like dengue and malaria, making them harmful to us." },
+                { q: "Which of these animals does not lay eggs to have babies?", a: "Bat", o: ["Pigeon", "Snake", "Tortoise"], e: "Bats are mammals, just like humans, and they give birth to live babies instead of laying eggs." },
+                { q: "A potato is which part of the plant?", a: "Stem", o: ["Root", "Fruit", "Leaf"], e: "A potato is a special kind of underground stem called a tuber, which stores food for the plant." },
+                { q: "Which of these can make its own food?", a: "Hibiscus plant", o: ["Human", "Mushroom", "Bee"], e: "Plants, like the hibiscus, can make their own food using sunlight, water, and air. This process is called photosynthesis." },
+                { q: "Which of these things will a magnet pull?", a: "An iron nail", o: ["A plastic spoon", "A wooden block", "A glass marble"], e: "Magnets only attract certain metals, like iron. Plastic, wood, and glass are not magnetic." },
+                { q: "Find the odd one out: Lion, Tiger, Cow, Leopard.", a: "Cow", o: ["Lion", "Tiger", "Leopard"], e: "The cow is a herbivore (eats plants), while the lion, tiger, and leopard are all carnivores (eat meat)." },
+                { q: "Which gas do we breathe out when we exhale?", a: "Carbon Dioxide", o: ["Oxygen", "Nitrogen", "Methane"], e: "Our body uses oxygen and produces carbon dioxide as a waste product, which we breathe out." },
+                { q: "Why do we see the Moon shining at night?", a: "It reflects light from the Sun", o: ["It has its own light", "It is on fire", "It is a big lamp"], e: "The Moon does not make its own light. It acts like a giant mirror, reflecting the Sun's light down to us on Earth." },
+                { q: "Which of these animals gives us wool?", a: "Sheep", o: ["Cow", "Goat", "Pig"], e: "We get wool from the thick, fluffy coat of a sheep, which is used to make warm clothes." },
+                { q: "Why can't we see stars during the daytime?", a: "The Sun's light is too bright", o: ["The stars go away", "They are sleeping", "The sky is too blue"], e: "The stars are always there! But during the day, our Sun's light is so bright that it outshines the faint light from the distant stars." },
+                { q: "What is the solid form of water?", a: "Ice", o: ["Steam", "Vapor", "Mist"], e: "When you freeze liquid water, it turns into solid ice." },
+                { q: "Which of these is NOT a sense organ?", a: "Stomach", o: ["Eyes", "Nose", "Tongue"], e: "Our five sense organs are eyes (sight), ears (hearing), nose (smell), tongue (taste), and skin (touch). The stomach is for digestion." },
+                { q: "Which number is neither prime nor composite?", a: "1", o: ["3", "2", "4"], e: "The number 1 is special. A prime number has exactly two factors (1 and itself), but 1 only has one factor (itself)." },
+                { q: "How many years are usually between leap years?", a: "4", o: ["5", "6", "7"], e: "A leap year has 366 days and happens every 4 years to keep our calendar in line with the Earth's orbit around the sun." },
+                { q: "How many corners (vertices) does a cube have?", a: "8", o: ["4", "6", "10"], e: "A cube, like a dice or a sugar cube, has 8 corners where the edges meet." },
+                { q: "What is the largest four-digit number?", a: "9999", o: ["9888", "1111", "1919"], e: "The largest single digit is 9. To make the largest four-digit number, you use the largest digit in every place value." },
+                { q: "Which of the following is a non-flowering plant?", a: "Moss", o: ["Water spinach", "Spinach", "Amaranth"], e: "Mosses are simple plants that don't produce flowers or seeds. They reproduce using tiny spores." },
+                { q: "The Moon is Earth's...?", a: "Satellite", o: ["Planet", "Bright star", "Star"], e: "A satellite is an object that orbits a planet. The Moon is Earth's only natural satellite." },
+                { q: "What is the third color in a rainbow?", a: "Yellow", o: ["Sky blue", "Blue", "Red"], e: "The colors of the rainbow are Red, Orange, Yellow, Green, Blue, Indigo, Violet. So, the third color is Yellow." },
+                { q: "Who proved that 'plants have life'?", a: "Jagadish Chandra Bose", o: ["Meghnad Saha", "Rabindranath Tagore", "Vivekananda"], e: "Jagadish Chandra Bose was a famous Indian scientist who invented the crescograph to prove that plants have life and feel things." },
+                { q: "When is World Environment Day celebrated?", a: "June 5th", o: ["September 5th", "November 14th", "April 7th"], e: "World Environment Day is celebrated on June 5th every year to encourage awareness and action for the protection of our environment." },
+                { q: "A person who makes wooden furniture is called a...", a: "Carpenter", o: ["Blacksmith", "Potter", "Weaver"], e: "A carpenter is a skilled worker who makes things out of wood, like tables, chairs, and beds." }
+            ],
+            medium: [
+                { q: "On which date are day and night of equal length?", a: "March 21st", o: ["January 21st", "June 21st", "August 21st"], e: "This happens twice a year, around March 21st and September 23rd. These days are called equinoxes." },
+                { q: "If you leave a wet cloth out in the sun, it becomes dry. Where does the water go?", a: "It turns into vapor and goes into the air", o: ["The sun drinks it", "It soaks into the cloth", "It disappears forever"], e: "The sun's heat turns the liquid water into an invisible gas called water vapor. This process is called evaporation." },
+                { q: "Why does a boat made of iron float, but a small iron nail sinks?", a: "Because of the boat's shape", o: ["The boat is painted", "The nail is sharp", "The boat is hollow"], e: "The boat's hollow, spread-out shape displaces a lot of water. This creates an upward force (buoyancy) strong enough to make it float. The nail is small and dense, so it sinks." },
+                { q: "Why do we see our breath as a white cloud on a cold day?", a: "The water vapor in our breath turns into tiny water droplets", o: ["Our breath freezes", "It is smoke from our lungs", "There is dust in the air"], e: "Our warm breath has invisible water vapor. When it hits the cold air, it quickly cools down and condenses into a cloud of tiny liquid droplets, which we can see." },
+                { q: "What is the main reason we cook our food?", a: "To make it soft and easy to digest", o: ["To make it hot", "To change its shape", "To add water to it"], e: "Cooking breaks down the food, making it softer for us to chew and easier for our stomachs to digest. It also kills germs." },
+                { q: "Why are electric wires usually covered with plastic?", a: "Plastic does not conduct electricity", o: ["To make them colorful", "To keep them warm", "To make them strong"], e: "Plastic is an insulator, which means electricity cannot pass through it. This protects us from getting an electric shock." },
+                { q: "What happens to the pupils of your eyes when you enter a dark room?", a: "They become larger", o: ["They become smaller", "They close", "They change color"], e: "Your pupils get bigger (dilate) to let in more light, helping you to see better in the dark." },
+                { q: "Why do we feel cool under a fan?", a: "It helps our sweat to evaporate quickly", o: ["The fan blows cold air", "It makes the room bigger", "It pushes hot air away"], e: "The fan doesn't cool the air. It speeds up the evaporation of sweat from our skin. When sweat evaporates, it takes heat from our body, making us feel cool." },
+                { q: "Which of these is a water-borne disease?", a: "Dysentery", o: ["Common cold", "Influenza", "Malaria"], e: "Water-borne diseases spread by drinking contaminated water. Dysentery (Amoebiasis) is one such illness." },
+                { q: "What makes a ball that is rolling on the ground eventually stop?", a: "Friction", o: ["Gravity", "Magic", "It gets tired"], e: "Friction is a force between the ball and the ground that rubs against the ball and slows it down until it stops." },
+                { q: "When is World Health Day celebrated?", a: "April 7th", o: ["Jan 7th", "Feb 7th", "Mar 7th"], e: "World Health Day is celebrated every year on April 7th to spread awareness about global health issues." },
+                { q: "The smallest composite number is...?", a: "4", o: ["2", "3", "6"], e: "A composite number has more than two factors. The number 4 has factors 1, 2, and 4, making it the smallest composite number." },
+                { q: "If Jan 1st, 2017 was a Sunday, what day was Jan 1st, 2018?", a: "Monday", o: ["Sunday", "Saturday", "Tuesday"], e: "A normal year has 365 days, which is 52 weeks and 1 extra day. So, the day of the week moves forward by one." },
+                { q: "How many days are in the last three months of an English year combined?", a: "92", o: ["90", "91", "93"], e: "The last three months are October (31 days), November (30 days), and December (31 days). 31 + 30 + 31 = 92 days." },
+                { q: "Find the odd one out: Shukratara (Venus), Sandhyatara (Venus), Dhruvatara (Pole Star), Mangalgraha (Mars).", a: "Dhruvatara (Pole Star)", o: ["Shukratara (Venus)", "Sandhyatara (Venus)", "Mangalgraha (Mars)"], e: "Shukratara and Sandhyatara are both names for the planet Venus, and Mars is also a planet. Dhruvatara (the Pole Star) is a star, not a planet." },
+                { q: "Which gas helps in putting out a fire?", a: "Carbon Dioxide", o: ["Oxygen", "Nitrogen", "Hydrogen"], e: "Carbon Dioxide is heavier than air and doesn't support burning. It's used in fire extinguishers to cut off the oxygen supply to a fire." },
+                { q: "Which of these is a new profession?", a: "Computer shop owner", o: ["Farming", "Pottery", "Weaving"], e: "Computers are a modern invention, so jobs related to them, like running a computer shop, are new professions compared to ancient ones like farming." },
+                { q: "What is the smallest number formed using the digits 2, 0, 5, 8?", a: "2058", o: ["0258", "5082", "8520"], e: "To make the smallest number, you arrange the digits from smallest to largest. However, a number cannot start with 0, so we use the next smallest digit (2) first." }
+            ],
+            hard: [
+                { q: "Why can you see lightning before you hear the thunder?", a: "Light travels much faster than sound", o: ["Thunder happens after lightning", "Our eyes are faster than our ears", "Lightning is closer"], e: "Light travels almost instantly, while sound moves much more slowly through the air. So, you see the flash of lightning right away, but it takes a few seconds for the sound of the thunder to reach you." },
+                { q: "Why does a pressure cooker cook food faster?", a: "The high pressure increases the boiling point of water", o: ["It traps the heat inside", "It makes the food soft", "It mixes the food well"], e: "Normally, water boils at 100°C. Inside a pressure cooker, the trapped steam increases the pressure, which allows the water to get much hotter (e.g., 120°C) before boiling. This higher temperature cooks food much faster." },
+                { q: "A man is in a boat in a small pond. If he drops a heavy anchor into the water, what will happen to the water level of the pond?", a: "It will go down", o: ["It will go up", "It will stay the same", "The boat will sink"], e: "When the anchor is in the boat, it displaces water equal to its weight. When it's in the water, it only displaces water equal to its volume. Since the anchor is very dense, its weight is much greater than its volume, so the water level will actually fall slightly." },
+                { q: "Why do astronauts float in space?", a: "They are in a state of freefall", o: ["There is no gravity in space", "Their suits are filled with air", "The spaceship pushes them up"], e: "There IS gravity in space! The astronauts and their spaceship are constantly 'falling' towards Earth, but they are also moving forward so fast that they keep missing it. This state of constant falling is called freefall, and it feels like weightlessness." },
+                { q: "Why is the sky blue on a clear day?", a: "Air scatters blue light more than other colors", o: ["The ocean reflects on the sky", "The sky is painted blue", "The air itself is blue"], e: "Sunlight is made of many colors. The Earth's atmosphere scatters the blue light in all directions, making the sky appear blue to our eyes." },
+                { q: "You have a candle, a thumbtack, and a matchbox. How can you fix the candle to a wall so that the wax does not drip on the floor?", a: "Empty the matchbox, tack it to the wall, and place the candle inside", o: ["Melt the bottom of the candle and stick it", "Use the thumbtack to pin the candle", "It is not possible"], e: "This is a classic lateral thinking puzzle. The matchbox itself can be used as a shelf. You tack the box to the wall and then stand the lit candle inside it." },
+                { q: "Why does it feel hotter when the sky is cloudy?", a: "Clouds trap heat from the Earth", o: ["Clouds are hot", "The sun is stronger", "The air stops moving"], e: "The Earth releases heat. On a clear night, this heat escapes into space. But clouds act like a blanket, trapping the heat and making it feel warmer." },
+                { q: "What is the name of the bridge over the Kangsabati river at the entrance of Medinipur town?", a: "Birbhadra Setu", o: ["Rabindra Setu", "Sarada Setu", "Vidyasagar Setu"], e: "The bridge over the Kangsabati river in Medinipur is named Birbhadra Setu (also referred to as Birendra Sasmal Setu in some contexts)." },
+                { q: "The chemical formula for water is H2O. What does the '2' mean?", a: "There are two atoms of Hydrogen", o: ["There are two atoms of Oxygen", "There are two types of water", "It is the second element"], e: "The formula H2O means that one molecule of water is made of two Hydrogen (H) atoms and one Oxygen (O) atom." },
+                { q: "What is the difference between the largest 3-digit number and the smallest 2-digit number?", a: "989", o: ["990", "900", "909"], e: "The largest 3-digit number is 999. The smallest 2-digit number is 10. The difference is 999 - 10 = 989." },
+                { q: "Which three numbers have the same result when you add them or multiply them?", a: "1, 2, and 3", o: ["2, 3, and 4", "1, 1, and 2", "0, 1, and 2"], e: "1 + 2 + 3 = 6, and 1 × 2 × 3 = 6. They are the only set of different positive numbers with this property." },
+                { q: "Find the odd one out: Diarrhoea, Cholera, Dysentery, Malaria.", a: "Malaria", o: ["Diarrhoea", "Cholera", "Dysentery"], e: "Diarrhoea, Cholera, and Dysentery are all water-borne diseases that affect the stomach. Malaria is spread by mosquitoes." },
+                { q: "What number needs to be added to 127 to make it perfectly divisible by 5?", a: "3", o: ["0", "2", "1"], e: "Numbers divisible by 5 end in either 0 or 5. The next number after 127 that ends in 0 or 5 is 130. To get to 130, you need to add 3 (127 + 3 = 130)." },
+                { q: "If a wheel's circumference is 29 cm, how many times will it rotate to cover 609 cm?", a: "21", o: ["20", "29", "18"], e: "To find the number of rotations, you divide the total distance by the circumference of the wheel. 609 ÷ 29 = 21 rotations." }
+            ]
+        };
+        
+        allQuestions = questionBank;
+
+
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function startQuiz(level) {
+            selectedLevel = level;
+            currentQuestions = shuffleArray([...allQuestions[level]]).slice(0, 25);
+            currentQuestionIndex = 0;
+            score = 0;
+            wrongAnswers = [];
+            quizModal.classList.remove('hidden');
+            setTimeout(() => quizBox.style.transform = 'scale(1)', 50);
+            displayQuestion();
+            startTimer(15 * 60); // 15 minutes
+        }
+
+        function displayQuestion() {
+            if (currentQuestionIndex >= currentQuestions.length) {
+                endQuiz();
+                return;
+            }
+
+            const question = currentQuestions[currentQuestionIndex];
+            questionText.textContent = question.q;
+            optionsContainer.innerHTML = '';
+            explanationBox.classList.add('hidden');
+            nextBtn.disabled = true;
+
+            const options = shuffleArray([...question.o, question.a]);
+            options.forEach(option => {
+                const button = document.createElement('button');
+                button.textContent = option;
+                button.classList.add('quiz-option', 'w-full', 'p-4', 'bg-white', 'rounded-lg', 'text-lg', 'font-semibold', 'text-left', 'hover:bg-yellow-200', 'transition-all', 'duration-200', 'shadow');
+                button.onclick = () => selectOption(button, option, question.a);
+                optionsContainer.appendChild(button);
+            });
+
+            progressText.textContent = `Question ${currentQuestionIndex + 1}/25`;
+        }
+
+        let optionSelected = false;
+
+        function selectOption(button, selectedAnswer, correctAnswer) {
+            if (optionSelected) return;
+            optionSelected = true;
+            nextBtn.disabled = false;
+            
+            // Clear previous selections
+            Array.from(optionsContainer.children).forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            button.classList.add('selected');
+
+            checkAnswer(selectedAnswer, correctAnswer);
+        }
+        
+        function checkAnswer(selected, correct) {
+            const question = currentQuestions[currentQuestionIndex];
+            const buttons = optionsContainer.querySelectorAll('button');
+            
+            if (selected === correct) {
+                score++;
+            } else {
+                wrongAnswers.push({
+                    question: question.q,
+                    yourAnswer: selected,
+                    correctAnswer: correct
+                });
+            }
+
+            buttons.forEach(btn => {
+                if (btn.textContent === correct) {
+                    btn.classList.add('correct');
+                } else if (btn.textContent === selected) {
+                    btn.classList.add('incorrect');
+                }
+                btn.disabled = true; // Disable all options after one is chosen
+            });
+
+            explanationText.textContent = question.e;
+            explanationBox.classList.remove('hidden');
+        }
+
+
+        nextBtn.addEventListener('click', () => {
+            currentQuestionIndex++;
+            optionSelected = false;
+            displayQuestion();
+        });
+        
+        function startTimer(duration) {
+            let timer = duration, minutes, seconds;
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                timerText.textContent = "Time: " + minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    endQuiz();
+                }
+            }, 1000);
+        }
+
+        function endQuiz() {
+            clearInterval(timerInterval);
+            quizModal.classList.add('hidden');
+            resultsModal.classList.remove('hidden');
+            
+            document.getElementById('score-text').textContent = `You scored ${score} out of 25!`;
+            
+            const wrongAnswersBox = document.getElementById('wrong-answers-container');
+            wrongAnswersBox.innerHTML = '<h3 class="text-xl font-bold mb-4 text-red-600">Here\'s what you can review:</h3>';
+            
+            if (wrongAnswers.length === 0) {
+                wrongAnswersBox.innerHTML += '<p class="text-green-600 font-semibold">Wow, perfect score! You got everything right!</p>';
+            } else {
+                wrongAnswers.forEach(item => {
+                    const el = document.createElement('div');
+                    el.classList.add('mb-4', 'pb-4', 'border-b');
+                    el.innerHTML = `
+                        <p class="font-semibold text-slate-700">${item.question}</p>
+                        <p class="text-sm text-red-500"><strong>Your answer:</strong> ${item.yourAnswer}</p>
+                        <p class="text-sm text-green-600"><strong>Correct answer:</strong> ${item.correctAnswer}</p>
+                    `;
+                    wrongAnswersBox.appendChild(el);
+                });
+            }
+        }
+        
+        function restartQuiz() {
+            resultsModal.classList.add('hidden');
+            startQuiz(selectedLevel);
+        }
+        
+        function closeResults() {
+             resultsModal.classList.add('hidden');
+        }
+
+    </script>
+
+</body>
+</html>
+
+
