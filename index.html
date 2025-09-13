@@ -63,8 +63,8 @@
         <div class="relative z-10">
             <div class="animate-on-scroll">
                 <h1 class="text-4xl md:text-6xl font-bold mb-4">Welcome, Young Scientists!</h1>
-                <p class="text-lg md:text-2xl mb-6 max-w-3xl mx-auto">Let's go on a fun journey to learn about Paschim Banga Vigyan Mancha!</p>
-                <a href="#learn" class="bg-yellow-400 text-slate-900 font-bold py-3 px-8 rounded-full text-xl hover:bg-yellow-300 transition-transform transform hover:scale-105 inline-block">Start Exploring!</a>
+                <p class="text-lg md:text-2xl mb-6 max-w-3xl mx-auto">Let's go on a fun journey to train for the Vigyan Mancha Exam!</p>
+                <a href="#quiz-section" class="bg-yellow-400 text-slate-900 font-bold py-3 px-8 rounded-full text-xl hover:bg-yellow-300 transition-transform transform hover:scale-105 inline-block">Start the Quiz!</a>
             </div>
         </div>
         <!-- Fun animated shapes -->
@@ -142,15 +142,21 @@
             <h2 class="text-4xl md:text-5xl font-bold mb-4">Ready for a Challenge?</h2>
             <p class="text-xl mb-10 max-w-2xl mx-auto">Test your knowledge with our fun quiz! Choose your level and let the fun begin.</p>
             
-            <div id="level-selection" class="flex flex-col sm:flex-row justify-center items-center gap-6">
-                <button onclick="startQuiz('easy')" class="w-full sm:w-auto bg-green-500 hover:bg-green-400 text-white font-bold py-4 px-10 rounded-xl text-2xl transition-transform transform hover:scale-105 shadow-lg">
-                    Level 1: Sprout 🌱
+            <div id="level-selection" class="grid grid-cols-1 md:grid-cols-5 justify-center items-center gap-4">
+                <button onclick="startQuiz('easy')" class="w-full bg-green-500 hover:bg-green-400 text-white font-bold py-4 px-6 rounded-xl text-xl transition-transform transform hover:scale-105 shadow-lg">
+                    Sprout 🌱
                 </button>
-                <button onclick="startQuiz('medium')" class="w-full sm:w-auto bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-4 px-10 rounded-xl text-2xl transition-transform transform hover:scale-105 shadow-lg">
-                    Level 2: Sapling 🌳
+                <button onclick="startQuiz('medium')" class="w-full bg-yellow-500 hover:bg-yellow-400 text-white font-bold py-4 px-6 rounded-xl text-xl transition-transform transform hover:scale-105 shadow-lg">
+                    Sapling 🌳
                 </button>
-                <button onclick="startQuiz('hard')" class="w-full sm:w-auto bg-red-500 hover:bg-red-400 text-white font-bold py-4 px-10 rounded-xl text-2xl transition-transform transform hover:scale-105 shadow-lg">
-                    Level 3: Scientist 👩‍🔬
+                <button onclick="startQuiz('hard')" class="w-full bg-red-500 hover:bg-red-400 text-white font-bold py-4 px-6 rounded-xl text-xl transition-transform transform hover:scale-105 shadow-lg">
+                    Scientist 👩‍🔬
+                </button>
+                <button onclick="startQuiz('thinker')" class="w-full bg-purple-500 hover:bg-purple-400 text-white font-bold py-4 px-6 rounded-xl text-xl transition-transform transform hover:scale-105 shadow-lg">
+                    Thinker 🤔
+                </button>
+                <button onclick="startQuiz('genius')" class="w-full bg-indigo-500 hover:bg-indigo-400 text-white font-bold py-4 px-6 rounded-xl text-xl transition-transform transform hover:scale-105 shadow-lg">
+                    Genius 🧠
                 </button>
             </div>
         </div>
@@ -266,7 +272,22 @@
                 { q: "What is the third color in a rainbow?", a: "Yellow", o: ["Sky blue", "Blue", "Red"], e: "The colors of the rainbow are Red, Orange, Yellow, Green, Blue, Indigo, Violet. So, the third color is Yellow." },
                 { q: "Who proved that 'plants have life'?", a: "Jagadish Chandra Bose", o: ["Meghnad Saha", "Rabindranath Tagore", "Vivekananda"], e: "Jagadish Chandra Bose was a famous Indian scientist who invented the crescograph to prove that plants have life and feel things." },
                 { q: "When is World Environment Day celebrated?", a: "June 5th", o: ["September 5th", "November 14th", "April 7th"], e: "World Environment Day is celebrated on June 5th every year to encourage awareness and action for the protection of our environment." },
-                { q: "A person who makes wooden furniture is called a...", a: "Carpenter", o: ["Blacksmith", "Potter", "Weaver"], e: "A carpenter is a skilled worker who makes things out of wood, like tables, chairs, and beds." }
+                { q: "A person who makes wooden furniture is called a...", a: "Carpenter", o: ["Blacksmith", "Potter", "Weaver"], e: "A carpenter is a skilled worker who makes things out of wood, like tables, chairs, and beds." },
+                { q: "What is a baby dog called?", a: "Puppy", o: ["Kitten", "Calf", "Cub"], e: "A young dog is called a puppy." },
+                { q: "Which planet is closest to the Sun?", a: "Mercury", o: ["Venus", "Earth", "Mars"], e: "Mercury is the first planet in our solar system, making it the closest to the Sun." },
+                { q: "How many sides does a triangle have?", a: "3", o: ["4", "5", "6"], e: "A triangle is a shape defined by having three straight sides and three angles." },
+                { q: "What do bees make?", a: "Honey", o: ["Silk", "Wax", "Pollen"], e: "Bees collect nectar from flowers and turn it into sweet honey, which they store in their hives." },
+                { q: "Which is the largest animal on land?", a: "Elephant", o: ["Lion", "Giraffe", "Rhino"], e: "The African bush elephant is the largest living land animal." },
+                { q: "What is the capital of India?", a: "New Delhi", o: ["Mumbai", "Kolkata", "Chennai"], e: "New Delhi is the capital city of India." },
+                { q: "Which festival is known as the festival of lights?", a: "Diwali", o: ["Holi", "Eid", "Christmas"], e: "Diwali is a major Hindu festival celebrated with lamps, fireworks, and sweets." },
+                { q: "What is H2O?", a: "Water", o: ["Salt", "Sugar", "Air"], e: "H2O is the chemical formula for water, meaning it's made of two hydrogen atoms and one oxygen atom." },
+                { q: "Which part of the plant absorbs water from the soil?", a: "Roots", o: ["Stem", "Leaf", "Flower"], e: "The roots of a plant anchor it in the ground and absorb water and nutrients." },
+                { q: "Find the odd one out: Car, Bicycle, Boat, Aeroplane.", a: "Bicycle", o: ["Car", "Boat", "Aeroplane"], e: "A bicycle is powered by human effort, while the others use engines or motors." },
+                { q: "What is the main source of Vitamin C?", a: "Orange", o: ["Milk", "Egg", "Rice"], e: "Citrus fruits like oranges and lemons are very rich in Vitamin C." },
+                { q: "Which bird cannot fly?", a: "Ostrich", o: ["Eagle", "Sparrow", "Pigeon"], e: "The ostrich is the world's largest bird, but its wings are too small to lift its heavy body." },
+                { q: "What do you use to see tiny things like germs?", a: "Microscope", o: ["Telescope", "Binoculars", "Spectacles"], e: "A microscope is a scientific instrument that makes very small objects appear much larger." },
+                { q: "What is the opposite of 'hot'?", a: "Cold", o: ["Warm", "Cool", "Freezing"], e: "Cold is the direct opposite of hot." },
+                { q: "How many months in a year have 31 days?", a: "7", o: ["5", "6", "8"], e: "The months with 31 days are January, March, May, July, August, October, and December." }
             ],
             medium: [
                 { q: "On which date are day and night of equal length?", a: "March 21st", o: ["January 21st", "June 21st", "August 21st"], e: "This happens twice a year, around March 21st and September 23rd. These days are called equinoxes." },
@@ -286,7 +307,18 @@
                 { q: "Find the odd one out: Shukratara (Venus), Sandhyatara (Venus), Dhruvatara (Pole Star), Mangalgraha (Mars).", a: "Dhruvatara (Pole Star)", o: ["Shukratara (Venus)", "Sandhyatara (Venus)", "Mangalgraha (Mars)"], e: "Shukratara and Sandhyatara are both names for the planet Venus, and Mars is also a planet. Dhruvatara (the Pole Star) is a star, not a planet." },
                 { q: "Which gas helps in putting out a fire?", a: "Carbon Dioxide", o: ["Oxygen", "Nitrogen", "Hydrogen"], e: "Carbon Dioxide is heavier than air and doesn't support burning. It's used in fire extinguishers to cut off the oxygen supply to a fire." },
                 { q: "Which of these is a new profession?", a: "Computer shop owner", o: ["Farming", "Pottery", "Weaving"], e: "Computers are a modern invention, so jobs related to them, like running a computer shop, are new professions compared to ancient ones like farming." },
-                { q: "What is the smallest number formed using the digits 2, 0, 5, 8?", a: "2058", o: ["0258", "5082", "8520"], e: "To make the smallest number, you arrange the digits from smallest to largest. However, a number cannot start with 0, so we use the next smallest digit (2) first." }
+                { q: "What is the smallest number formed using the digits 2, 0, 5, 8?", a: "2058", o: ["0258", "5082", "8520"], e: "To make the smallest number, you arrange the digits from smallest to largest. However, a number cannot start with 0, so we use the next smallest digit (2) first." },
+                { q: "What is the process called when a caterpillar turns into a butterfly?", a: "Metamorphosis", o: ["Hibernation", "Germination", "Photosynthesis"], e: "Metamorphosis is the amazing transformation process some insects go through from a young form to an adult form." },
+                { q: "Which planet is known as the 'Morning Star' or 'Evening Star'?", a: "Venus", o: ["Mercury", "Mars", "Jupiter"], e: "Venus is so bright that it's often the first 'star' to appear in the evening or the last to disappear in the morning." },
+                { q: "What is the main difference between a plant cell and an animal cell?", a: "Plant cells have a cell wall", o: ["Animal cells have a nucleus", "Plant cells are smaller", "Animal cells are green"], e: "The rigid cell wall outside the cell membrane gives plant cells a fixed shape, which animal cells lack." },
+                { q: "What causes tides in the ocean?", a: "The Moon's gravity", o: ["The Sun's heat", "Wind", "Earth's rotation"], e: "The gravitational pull of the Moon is the main reason for the regular rise and fall of the ocean's water level." },
+                { q: "Find the odd one out: Heart, Brain, Lungs, Skin.", a: "Skin", o: ["Heart", "Brain", "Lungs"], e: "The heart, brain, and lungs are internal organs, while the skin is the body's largest external organ." },
+                { q: "What is the boiling point of water?", a: "100° Celsius", o: ["0° Celsius", "50° Celsius", "100° Fahrenheit"], e: "At standard atmospheric pressure, pure water boils and turns into steam at 100° Celsius (or 212° Fahrenheit)." },
+                { q: "What is an echo?", a: "A reflected sound", o: ["A very loud sound", "A continuous sound", "A soft sound"], e: "An echo is created when sound waves bounce off a hard surface and travel back to the listener." },
+                { q: "Which instrument is used to measure temperature?", a: "Thermometer", o: ["Barometer", "Speedometer", "Ruler"], e: "A thermometer is used to measure how hot or cold something is." },
+                { q: "What is photosynthesis?", a: "The process plants use to make food", o: ["The breathing process of animals", "The process of water evaporation", "The way rocks are formed"], e: "Plants use sunlight, water, and carbon dioxide to create their own food (sugar) through photosynthesis." },
+                { q: "If you mix red and yellow paint, what color do you get?", a: "Orange", o: ["Green", "Purple", "Brown"], e: "Red and yellow are primary colors that mix to create the secondary color orange." },
+                { q: "What is the largest organ in the human body?", a: "Skin", o: ["Liver", "Heart", "Brain"], e: "The skin is the largest organ, covering the entire outside of the body and protecting it." }
             ],
             hard: [
                 { q: "Why can you see lightning before you hear the thunder?", a: "Light travels much faster than sound", o: ["Thunder happens after lightning", "Our eyes are faster than our ears", "Lightning is closer"], e: "Light travels almost instantly, while sound moves much more slowly through the air. So, you see the flash of lightning right away, but it takes a few seconds for the sound of the thunder to reach you." },
@@ -302,7 +334,41 @@
                 { q: "Which three numbers have the same result when you add them or multiply them?", a: "1, 2, and 3", o: ["2, 3, and 4", "1, 1, and 2", "0, 1, and 2"], e: "1 + 2 + 3 = 6, and 1 × 2 × 3 = 6. They are the only set of different positive numbers with this property." },
                 { q: "Find the odd one out: Diarrhoea, Cholera, Dysentery, Malaria.", a: "Malaria", o: ["Diarrhoea", "Cholera", "Dysentery"], e: "Diarrhoea, Cholera, and Dysentery are all water-borne diseases that affect the stomach. Malaria is spread by mosquitoes." },
                 { q: "What number needs to be added to 127 to make it perfectly divisible by 5?", a: "3", o: ["0", "2", "1"], e: "Numbers divisible by 5 end in either 0 or 5. The next number after 127 that ends in 0 or 5 is 130. To get to 130, you need to add 3 (127 + 3 = 130)." },
-                { q: "If a wheel's circumference is 29 cm, how many times will it rotate to cover 609 cm?", a: "21", o: ["20", "29", "18"], e: "To find the number of rotations, you divide the total distance by the circumference of the wheel. 609 ÷ 29 = 21 rotations." }
+                { q: "If a wheel's circumference is 29 cm, how many times will it rotate to cover 609 cm?", a: "21", o: ["20", "29", "18"], e: "To find the number of rotations, you divide the total distance by the circumference of the wheel. 609 ÷ 29 = 21 rotations." },
+                { q: "What is an alloy?", a: "A mixture of a metal with another element", o: ["A pure metal", "A non-metal", "A type of rock"], e: "Alloys like steel (iron and carbon) or brass (copper and zinc) are created to give metals improved properties like strength or rust resistance." },
+                { q: "What is the scientific study of insects called?", a: "Entomology", o: ["Biology", "Botany", "Zoology"], e: "Entomology is the specific branch of zoology that focuses on the study of insects." },
+                { q: "Why do we have different seasons?", a: "The tilt of the Earth's axis", o: ["The Earth's distance from the Sun", "The amount of clouds", "The speed of the Earth's rotation"], e: "The Earth is tilted. As it orbits the Sun, different parts of the planet receive more direct sunlight, causing the seasons." },
+                { q: "Find the odd one out: Steel, Bronze, Brass, Copper", a: "Copper", o: ["Steel", "Bronze", "Brass"], e: "Copper is a pure element (a metal). Steel, bronze, and brass are all alloys, which are mixtures of metals." },
+                { q: "What is dry ice?", a: "Solid carbon dioxide", o: ["Frozen water with no air", "Ice from a desert", "A type of salt"], e: "Dry ice is the solid form of CO2. It's called 'dry' because it turns directly into a gas (sublimation) instead of melting into a liquid." },
+                { q: "What is the main function of red blood cells?", a: "To carry oxygen", o: ["To fight infection", "To help blood clot", "To carry nutrients"], e: "Red blood cells contain hemoglobin, a protein that binds to oxygen in the lungs and transports it throughout the body." }
+            ],
+            thinker: [
+                { q: "If you have a block of wood and a small iron pebble of the same weight, and you put both in water, what will happen?", a: "The wood will float, the iron will sink", o: ["Both will float", "Both will sink", "The wood will sink, the iron will float"], e: "Even though they have the same weight, the wood is much bigger (less dense) than the iron pebble. The wood displaces enough water to float, but the small, dense iron pebble does not." },
+                { q: "You see a full moon on the 1st of the month. Approximately when will you see the next new moon?", a: "Around the 15th of the month", o: ["Around the 8th", "Around the 22nd", "On the 30th"], e: "The moon cycle is about 29.5 days. A full moon is halfway through the cycle. A new moon (when we can't see it) is at the beginning/end. It takes about 14-15 days to go from a full moon to a new moon." },
+                { q: "Which of these is an example of a chemical change?", a: "Baking a cake", o: ["Melting an ice cube", "Tearing a piece of paper", "Boiling water"], e: "Baking a cake involves ingredients reacting with heat to form a new substance with different properties. The other options are physical changes, where the substance just changes its form but is still the same thing (water, paper)." },
+                { q: "What is the primary function of a plant's roots?", a: "To absorb water and anchor the plant", o: ["To make food", "To help the plant breathe", "To create flowers"], e: "Roots have two main jobs: to act like a straw, sucking up water and nutrients from the soil, and to hold the plant firmly in the ground so it doesn't fall over." },
+                { q: "Find the odd one out: Bat, Whale, Ostrich, Dolphin.", a: "Ostrich", o: ["Bat", "Whale", "Dolphin"], e: "An Ostrich is a bird. Bats, Whales, and Dolphins are all mammals, which means they give birth to live young and produce milk." },
+                { q: "A farmer has 17 sheep. All but nine die. How many are left?", a: "9", o: ["17", "8", "0"], e: "This is a riddle! The phrase 'all but nine' means that nine sheep are the ones that survived." },
+                { q: "What has an eye, but cannot see?", a: "A needle", o: ["A potato", "A storm", "A camera"], e: "A needle has a hole called an 'eye' for the thread, but it has no ability to see." },
+                { q: "What has cities, but no houses; forests, but no trees; and water, but no fish?", a: "A map", o: ["A dream", "A book", "A computer"], e: "A map is a representation of places but doesn't contain the actual physical objects." },
+                { q: "If you are in a race and you overtake the person in second place, what place are you in?", a: "Second place", o: ["First place", "Third place", "You are disqualified"], e: "If you overtake the person in second, you take their spot. You are now in second place." },
+                { q: "What comes once in a minute, twice in a moment, but never in a thousand years?", a: "The letter 'M'", o: ["The number 1", "A sound", "A thought"], e: "This is a word puzzle based on the spelling of the words themselves." },
+                { q: "A man is looking at a portrait. Someone asks him whose portrait he is looking at. He replies, 'Brothers and sisters I have none, but that man's father is my father's son.' Who is in the portrait?", a: "His son", o: ["Himself", "His father", "His brother"], e: "'My father's son' is himself (since he has no brothers). So he is saying 'that man's father is me'. Therefore, the man in the portrait is his son." },
+                { q: "What is full of holes but still holds water?", a: "A sponge", o: ["A net", "A bottle", "A cloud"], e: "A sponge is porous with many holes, but it absorbs and holds water within its structure." },
+                { q: "What gets wetter and wetter the more it dries?", a: "A towel", o: ["A plant", "A piece of paper", "A raincoat"], e: "A towel absorbs moisture (gets wet) while it is in the process of drying something else." }
+            ],
+            genius: [
+                { q: "Why does a compass needle always point North?", a: "The Earth acts like a giant magnet", o: ["The North Star pulls it", "It is heaviest on one end", "The sun's gravity affects it"], e: "The Earth has a molten iron core that creates a magnetic field. A compass needle is a small magnet that aligns itself with the Earth's magnetic field, with its north pole pointing to the Earth's geographic North Pole." },
+                { q: "If you are on a boat and throw a heavy suitcase onto the dock, what happens to the boat?", a: "The boat moves away from the dock", o: ["The boat moves towards the dock", "The boat stays still", "The boat sinks a little"], e: "This is Newton's Third Law of Motion. For every action, there is an equal and opposite reaction. When you push the suitcase forward (action), the suitcase pushes you (and the boat) backward (reaction)." },
+                { q: "What is the main difference between weight and mass?", a: "Weight depends on gravity, mass does not", o: ["They are the same thing", "Mass is measured in liters", "Weight is how big something is"], e: "Mass is the amount of 'stuff' in an object and is the same everywhere. Weight is the force of gravity pulling on that mass. Your mass is the same on Earth and the Moon, but you would weigh much less on the Moon because its gravity is weaker." },
+                { q: "Why can't you use a regular ink pen to write in space?", a: "There is no gravity to pull the ink down", o: ["The ink would freeze", "The pen would float away", "The paper would rip"], e: "Most pens rely on gravity to pull the ink down to the tip. In the microgravity of space, this doesn't work. Astronauts use special pressurized pens that force the ink out." },
+                { q: "Which of these is NOT a fossil fuel?", a: "Wood", o: ["Coal", "Petrol (Gasoline)", "Natural Gas"], e: "Fossil fuels are formed from the remains of ancient plants and animals over millions of years. Wood comes from trees that are living now or recently, so it's a biofuel, not a fossil fuel." },
+                { q: "You have two ropes that each take exactly one hour to burn from end to end. They don't burn at a consistent rate. How can you measure exactly 45 minutes?", a: "Light rope A at both ends and rope B at one end. When A burns out, light the other end of B.", o: ["Burn one rope and then burn the other halfway", "Cut one rope in half", "It's impossible"], e: "Rope A, lit at both ends, will burn out in 30 minutes. At that exact moment, rope B has 30 minutes of burn time left. By lighting the other end of rope B, you cause it to burn from both ends, so it will burn out in half the time: 15 minutes. Total time measured: 30 + 15 = 45 minutes." },
+                { q: "Why is it impossible to tickle yourself?", a: "Your brain anticipates the sensation", o: ["Your fingers are too soft", "Your skin gets used to it", "You are not strong enough"], e: "Your brain's cerebellum predicts the sensation your own movements will cause and cancels out the response. Because there is no surprise, the tickle sensation doesn't happen." },
+                { q: "What is Occam's Razor?", a: "The simplest explanation is often the best", o: ["A type of sharp tool", "A law in physics", "A mathematical theorem"], e: "Occam's Razor is a problem-solving principle that states that when presented with competing hypotheses, one should select the one that makes the fewest assumptions." },
+                { q: "If you are in a windowless room with three light switches outside that control three different bulbs inside, how can you determine which switch controls which bulb with only ONE entry into the room?", a: "Flip switch 1 on for a minute, then off. Flip switch 2 on. Enter.", o: ["Flip one switch and check", "Flip all switches and check", "It is impossible to know"], e: "After performing the action, enter the room. The bulb that is ON is connected to switch 2. The bulb that is OFF but WARM is connected to switch 1. The bulb that is OFF and COLD is connected to switch 3." },
+                { q: "What does the 'E' in E=mc² stand for?", a: "Energy", o: ["Einstein", "Electricity", "Earth"], e: "This is Einstein's famous mass-energy equivalence formula, where E is energy, m is mass, and c is the speed of light in a vacuum." },
+                { q: "There are 12 eggs in a carton. 12 people each take one egg. How can it be that there is still one egg left in the carton?", a: "The last person took the carton with the egg inside", o: ["One person put their egg back", "One egg was plastic", "It's a magic trick"], e: "This is a classic riddle. The first 11 people take an egg, and the 12th person simply takes the entire carton with the last egg still inside it." }
             ]
         };
         
@@ -319,7 +385,16 @@
 
         function startQuiz(level) {
             selectedLevel = level;
-            currentQuestions = shuffleArray([...allQuestions[level]]).slice(0, 25);
+            // Ensure we have questions for the selected level, otherwise default to easy
+            const questionsForLevel = allQuestions[level] || allQuestions.easy;
+            currentQuestions = shuffleArray([...questionsForLevel]).slice(0, 25);
+             if (currentQuestions.length < 25) {
+                // If a level has fewer than 25 questions, adjust the total number
+                progressText.textContent = `Question ${currentQuestionIndex + 1}/${currentQuestions.length}`;
+            } else {
+                 progressText.textContent = `Question ${currentQuestionIndex + 1}/25`;
+            }
+
             currentQuestionIndex = 0;
             score = 0;
             wrongAnswers = [];
@@ -330,7 +405,8 @@
         }
 
         function displayQuestion() {
-            if (currentQuestionIndex >= currentQuestions.length) {
+            const totalQuestions = Math.min(25, currentQuestions.length);
+            if (currentQuestionIndex >= totalQuestions) {
                 endQuiz();
                 return;
             }
@@ -350,7 +426,7 @@
                 optionsContainer.appendChild(button);
             });
 
-            progressText.textContent = `Question ${currentQuestionIndex + 1}/25`;
+            progressText.textContent = `Question ${currentQuestionIndex + 1}/${totalQuestions}`;
         }
 
         let optionSelected = false;
@@ -422,11 +498,12 @@
         }
 
         function endQuiz() {
+            const totalQuestions = Math.min(25, currentQuestions.length);
             clearInterval(timerInterval);
             quizModal.classList.add('hidden');
             resultsModal.classList.remove('hidden');
             
-            document.getElementById('score-text').textContent = `You scored ${score} out of 25!`;
+            document.getElementById('score-text').textContent = `You scored ${score} out of ${totalQuestions}!`;
             
             const wrongAnswersBox = document.getElementById('wrong-answers-container');
             wrongAnswersBox.innerHTML = '<h3 class="text-xl font-bold mb-4 text-red-600">Here\'s what you can review:</h3>';
@@ -460,5 +537,4 @@
 
 </body>
 </html>
-
 
